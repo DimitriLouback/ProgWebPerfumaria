@@ -1,6 +1,8 @@
 
 # Perfumaria Prog Web
 
+<img src="docs/imgs/perfumaria logo 1.png" width="250" height="250">
+
 Esse projeto está sendo desenvolvido para a disciplina de Programação Web, com o intuito de criar uma aplicação de pedidos online de uma Perfumaria.
 
 ![Static Badge](https://img.shields.io/badge/Status-Em%20produ%C3%A7%C3%A3o-orange?style=flat&logo=%20&color=orange)
