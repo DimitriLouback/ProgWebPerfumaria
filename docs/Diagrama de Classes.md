@@ -4,4 +4,4 @@
 
 ##### *Versão 1*
 
-![diagrama_de_classes](docs/imgs/diagrama%20perfumaria%201.png)
+<img src="docs/imgs/diagrama perfumaria 1.png">
