@@ -39,6 +39,9 @@ public class Usuario implements Serializable {
     @Column(name = "celular")
     private String celular;
 
+    @Embedded
+    private Endereco endereco;
+
     public long getId() {
         return id;
     }
@@ -85,5 +88,13 @@ public class Usuario implements Serializable {
 
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
