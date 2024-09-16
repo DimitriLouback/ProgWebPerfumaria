@@ -27,9 +27,9 @@ public class Runner implements CommandLineRunner {
 //    @Autowired
 //    private PagamentoService pagamentoService;
 //
-//    @Autowired
-//    private ClienteService clienteService;
-//
+    @Autowired
+    private ClienteService clienteService;
+
 //    @Autowired
 //    private CarrinhoService carrinhoService;
 //
@@ -115,6 +115,15 @@ public class Runner implements CommandLineRunner {
 //        System.out.println("Pedidos criados:");
 //        System.out.println(pedidoService.listarPedidos());
 //
+        Long clienteId = 552L;
+        Cliente cliente = clienteService.buscarPorId(clienteId);
+
+        if (cliente != null) {
+            System.out.println("Cliente encontrado! ID: " + clienteId);
+            System.out.println("Nome do Cliente: " + cliente.getUsername());
+        } else {
+            System.out.println("Cliente com ID " + clienteId + " não encontrado.");
+        }
 
     }
 

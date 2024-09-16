@@ -3,6 +3,8 @@ package br.edu.iff.ccc.bsi.perfumaria;
 import br.edu.iff.ccc.bsi.perfumaria.entities.Pagamento;
 import br.edu.iff.ccc.bsi.perfumaria.repository.PagamentoRepository;
 import br.edu.iff.ccc.bsi.perfumaria.service.PagamentoService;
+import jakarta.validation.ConstraintViolationException;
+import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -30,6 +32,15 @@ class PagamentoServiceTest {
     }
 
     @Test
+    void testInserirPagamento_ComStatusInvalido() {
+        //Cenário
+        Pagamento pagamento = new Pagamento();
+        pagamento.setStatusPagamento("Inválido");
+        //Ação e Verificação
+        assertThrows(IllegalArgumentException.class, () -> pagamentoService.inserirPagamento(pagamento));
+    }
+
+    @Test
     void testInserirPagamento() {
         Pagamento pagamento = new Pagamento();
         pagamento.setId(1L);
@@ -42,6 +53,8 @@ class PagamentoServiceTest {
         assertEquals(1L, result.getId());
         verify(pagamentoRepository, times(1)).save(pagamento);
     }
+
+
 
     @Test
     void testBuscarPorId() {

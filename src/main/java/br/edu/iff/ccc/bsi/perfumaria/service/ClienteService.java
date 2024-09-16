@@ -30,12 +30,11 @@ public class ClienteService {
     public Cliente buscarPorNome(String username) {
         List<Usuario> usuarios = usuarioRepository.findByUsername(username);
 
-        // Filtra apenas os usuários que são clientes
         return usuarios.stream()
                 .filter(usuario -> usuario instanceof Cliente)
                 .map(usuario -> (Cliente) usuario)
                 .findFirst()
-                .orElse(null);  // Retorna o primeiro Cliente encontrado ou null se não houver
+                .orElse(null);
     }
 
     public List<Cliente> listarClientes() {

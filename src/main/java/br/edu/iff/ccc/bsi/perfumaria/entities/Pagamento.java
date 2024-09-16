@@ -1,6 +1,7 @@
 package br.edu.iff.ccc.bsi.perfumaria.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Pagamento {
@@ -14,10 +15,12 @@ public class Pagamento {
     private Carrinho carrinho;
 
     @Column(name = "metodo_pagamento")
+    @NotEmpty
     private String metodoPagamento;
 
+    @NotEmpty
     @Column(name = "status_pagamento")
-    private String statusPagamento; // "Pendente", "Concluído", "Cancelado"
+    private String statusPagamento;
 
     public Pagamento() {
     }

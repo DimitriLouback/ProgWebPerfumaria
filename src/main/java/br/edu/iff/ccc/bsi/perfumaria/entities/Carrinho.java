@@ -65,7 +65,7 @@ public class Carrinho {
     }
 
 
-    private void calcularValorTotal() {
+    public void calcularValorTotal() {
         this.valorTotal = perfumes.stream()
                 .mapToDouble(Perfume::getPreco)
                 .sum();

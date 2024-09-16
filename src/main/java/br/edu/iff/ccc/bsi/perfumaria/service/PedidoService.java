@@ -27,7 +27,7 @@ public class PedidoService {
 
     public Pedido atualizarPedido(Long id, Pedido pedido) {
         if (pedidoRepository.existsById(id)) {
-            pedido.setId(id); // Define o ID do pedido para atualização
+            pedido.setId(id);
             return pedidoRepository.save(pedido);
         }
         return null;

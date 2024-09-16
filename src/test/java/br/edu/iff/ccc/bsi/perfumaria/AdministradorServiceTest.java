@@ -31,13 +31,16 @@ class AdministradorServiceTest {
 
     @Test
     void testAdicionarPerfume() {
+        //Cenário
         Perfume perfume = new Perfume();
         perfume.setNome("Perfume Teste");
 
         when(perfumeRepository.save(any(Perfume.class))).thenReturn(perfume);
 
+        //Ação
         Perfume result = administradorService.adicionarPerfume(perfume);
 
+        //Verificação
         assertNotNull(result);
         assertEquals("Perfume Teste", result.getNome());
         verify(perfumeRepository, times(1)).save(perfume);

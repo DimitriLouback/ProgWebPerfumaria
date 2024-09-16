@@ -7,9 +7,12 @@ import br.edu.iff.ccc.bsi.perfumaria.repository.PerfumeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class CarrinhoService {
@@ -47,17 +50,15 @@ public class CarrinhoService {
 
     @Transactional
     public Carrinho adicionarPerfume(Long carrinhoId, Long perfumeId) {
-        Optional<Carrinho> optionalCarrinho = carrinhoRepository.findById(carrinhoId);
-        Optional<Perfume> optionalPerfume = perfumeRepository.findById(perfumeId);
+        Carrinho carrinho = carrinhoRepository.findById(carrinhoId)
+                .orElseThrow(() -> new IllegalArgumentException("Carrinho não encontrado"));
 
-        if (optionalCarrinho.isPresent() && optionalPerfume.isPresent()) {
-            Carrinho carrinho = optionalCarrinho.get();
-            Perfume perfume = optionalPerfume.get();
-            carrinho.getPerfumes().add(perfume);
-            carrinho.setPerfumes(carrinho.getPerfumes()); // Atualiza o carrinho
-            return carrinhoRepository.save(carrinho);
-        }
-        return null;
+        Perfume perfume = perfumeRepository.findById(perfumeId)
+                .orElseThrow(() -> new IllegalArgumentException("Perfume não encontrado"));
+
+        carrinho.getPerfumes().add(perfume);
+        carrinho.calcularValorTotal();
+        return carrinhoRepository.save(carrinho);
     }
 
 
@@ -69,7 +70,7 @@ public class CarrinhoService {
             Carrinho carrinho = optionalCarrinho.get();
             Perfume perfume = optionalPerfume.get();
             carrinho.getPerfumes().remove(perfume);
-            carrinho.setPerfumes(carrinho.getPerfumes()); // Atualiza o carrinho
+            carrinho.setPerfumes(carrinho.getPerfumes());
             return carrinhoRepository.save(carrinho);
         }
         return null;

@@ -5,6 +5,7 @@ import br.edu.iff.ccc.bsi.perfumaria.entities.Perfume;
 import br.edu.iff.ccc.bsi.perfumaria.repository.CarrinhoRepository;
 import br.edu.iff.ccc.bsi.perfumaria.repository.PerfumeRepository;
 import br.edu.iff.ccc.bsi.perfumaria.service.CarrinhoService;
+import jakarta.validation.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -34,6 +36,8 @@ class CarrinhoServiceTest {
 
     @Test
     void testAdicionarPerfume() {
+
+        //Cenário
         Carrinho carrinho = new Carrinho();
         Perfume perfume = new Perfume();
         perfume.setId(1L);
@@ -42,8 +46,10 @@ class CarrinhoServiceTest {
         when(perfumeRepository.findById(1L)).thenReturn(Optional.of(perfume));
         when(carrinhoRepository.save(any(Carrinho.class))).thenReturn(carrinho);
 
+        //Ação
         Carrinho result = carrinhoService.adicionarPerfume(1L, 1L);
 
+        //Verificação
         assertNotNull(result);
         assertTrue(result.getPerfumes().contains(perfume));
         verify(carrinhoRepository, times(1)).save(carrinho);
@@ -51,6 +57,7 @@ class CarrinhoServiceTest {
 
     @Test
     void testRemoverPerfume() {
+        //Cenário
         Carrinho carrinho = new Carrinho();
         Perfume perfume = new Perfume();
         perfume.setId(1L);
@@ -60,8 +67,10 @@ class CarrinhoServiceTest {
         when(perfumeRepository.findById(1L)).thenReturn(Optional.of(perfume));
         when(carrinhoRepository.save(any(Carrinho.class))).thenReturn(carrinho);
 
+        //Ação
         Carrinho result = carrinhoService.removerPerfume(1L, 1L);
 
+        //Verificação
         assertNotNull(result);
         assertFalse(result.getPerfumes().contains(perfume));
         verify(carrinhoRepository, times(1)).save(carrinho);

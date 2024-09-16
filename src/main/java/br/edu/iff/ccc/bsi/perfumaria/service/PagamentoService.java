@@ -2,6 +2,7 @@ package br.edu.iff.ccc.bsi.perfumaria.service;
 
 import br.edu.iff.ccc.bsi.perfumaria.entities.Pagamento;
 import br.edu.iff.ccc.bsi.perfumaria.repository.PagamentoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ public class PagamentoService {
     private PagamentoRepository pagamentoRepository;
 
     public Pagamento inserirPagamento(Pagamento pagamento) {
+        if (!List.of("Pendente", "Concluído", "Cancelado").contains(pagamento.getStatusPagamento())) {
+            throw new IllegalArgumentException("Status de pagamento inválido");
+        }
         return pagamentoRepository.save(pagamento);
     }
 
