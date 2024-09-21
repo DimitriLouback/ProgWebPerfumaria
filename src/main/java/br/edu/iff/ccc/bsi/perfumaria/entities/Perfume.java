@@ -1,6 +1,10 @@
 package br.edu.iff.ccc.bsi.perfumaria.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 
@@ -20,21 +24,28 @@ public class Perfume implements Serializable {
     public Perfume() {
     }
 
+    @NotEmpty(message = "Nome do perfume não pode estar vazio")
+    @Size(min = 3, max = 50, message = "Nome do perfume deve ter entre 3 e 50 caracteres")
     @Column(name = "nome")
     private String nome;
 
+    @DecimalMin(value = "0.0", inclusive = false, message = "Preço deve ser maior que zero")
     @Column(name = "preco")
     private float preco;
 
+    @Positive(message = "Quantidade em estoque deve ser positiva")
     @Column(name = "quantidade_em_estoque")
     private int quantidadeEmEstoque;
 
+    @NotEmpty(message = "Fragrância não pode estar vazia")
     @Column(name = "fragrancia")
     private String fragrancia;
 
+    @NotEmpty(message = "Marca não pode estar vazia")
     @Column(name = "marca")
     private String marca;
 
+    @Positive(message = "Volume deve ser positivo")
     @Column(name = "volume")
     private int volume;
 

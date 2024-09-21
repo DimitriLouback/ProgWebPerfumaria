@@ -1,5 +1,8 @@
 package br.edu.iff.ccc.bsi.perfumaria.entities;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,14 +13,18 @@ import java.util.Date;
 
         }
 
+        @OneToOne(mappedBy = "cliente")
+        private Carrinho carrinho;
+
+        @NotNull(message = "Data de nascimento não pode ser nula")
+        @Past(message = "Data de nascimento deve ser no passado")
         @Column(name = "data_nascimento")
         private Date dataNascimento;
 
-        @Column(name = "genero")
-        private String genero;
-
-        @Column(name = "RG")
-        private String RG;
+        @NotNull(message = "Data de cadastro não pode ser nula")
+        @Past(message = "Data de cadastro deve ser uma data no passado")
+        @Column(name = "data_cadastro")
+        private Date dataCadastro;
 
 
         public Date getDataNascimento() {
@@ -28,20 +35,11 @@ import java.util.Date;
             this.dataNascimento = dataNascimento;
         }
 
-        public String getGenero() {
-            return genero;
+        public Date getDataCadastro() {
+            return dataCadastro;
         }
 
-        public void setGenero(String genero) {
-            this.genero = genero;
-        }
-
-        public String getRG() {
-            return RG;
-        }
-
-        public void setRG(String RG) {
-            this.RG = RG;
+        public void setDataCadastro(Date dataCadastro) {
+            this.dataCadastro = dataCadastro;
         }
     }
-
