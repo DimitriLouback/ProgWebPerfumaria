@@ -54,7 +54,7 @@ public class ApiRestUsuarioController {
 
     @Operation(summary = "Listar todos os usuários")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Usuário listados com sucesso",
+            @ApiResponse(responseCode = "200", description = "Usuários listados com sucesso",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Usuario.class))}),
             @ApiResponse(responseCode = "400", description = "Ocorreu algum erro na listagem dos usuários",
