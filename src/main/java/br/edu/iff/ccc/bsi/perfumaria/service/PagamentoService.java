@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PagamentoService {
@@ -31,5 +32,23 @@ public class PagamentoService {
 
     public void removerPagamentoPorId(Long id) {
         pagamentoRepository.deleteById(id);
+    }
+
+    public Pagamento atualizarPagamento(Long id, Pagamento pagamentoAtualizado) {
+        Optional<Pagamento> pagamentoExistente = pagamentoRepository.findById(id);
+
+        if (pagamentoExistente.isPresent()) {
+            Pagamento pagamento = pagamentoExistente.get();
+
+
+            pagamento.setMetodoPagamento(pagamentoAtualizado.getMetodoPagamento());
+            pagamento.setStatusPagamento(pagamentoAtualizado.getStatusPagamento());
+            pagamento.setCarrinho(pagamentoAtualizado.getCarrinho());
+
+
+            return pagamentoRepository.save(pagamento);
+        } else {
+            throw new RuntimeException("Pagamento com ID " + id + " não encontrado");
+        }
     }
 }

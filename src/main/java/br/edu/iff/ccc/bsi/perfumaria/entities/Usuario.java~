@@ -28,6 +28,8 @@ public class Usuario implements Serializable {
 
     }
 
+
+
     @NotEmpty(message = "Nome de usuário não pode estar vazio")
     @Size(min = 3, max = 50, message = "Nome de usuário deve ter entre 3 e 50 caracteres")
     @Column(name = "nome")

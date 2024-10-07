@@ -2,11 +2,6 @@ package br.edu.iff.ccc.bsi.perfumaria.controller.apirest;
 
 import br.edu.iff.ccc.bsi.perfumaria.entities.Pagamento;
 import br.edu.iff.ccc.bsi.perfumaria.service.PagamentoService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;

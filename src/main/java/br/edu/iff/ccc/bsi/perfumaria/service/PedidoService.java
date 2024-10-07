@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class  PedidoService {
+public class  PedidoService  {
 
     @Autowired
     private PedidoRepository pedidoRepository;
@@ -25,12 +25,13 @@ public class  PedidoService {
         return pedidoRepository.findAll();
     }
 
-    public Pedido atualizarPedido(Long id, Pedido pedido) {
-        if (pedidoRepository.existsById(id)) {
-            pedido.setId(id);
-            return pedidoRepository.save(pedido);
-        }
-        return null;
+    public Pedido atualizarPedido(Long id, Pedido pedidoAtualizado) {
+        return pedidoRepository.findById(id).map(pedidoExistente -> {
+            pedidoExistente.setCarrinho(pedidoAtualizado.getCarrinho());
+            pedidoExistente.setPagamento(pedidoAtualizado.getPagamento());
+            pedidoExistente.setDataPedido(pedidoAtualizado.getDataPedido());
+            return pedidoRepository.save(pedidoExistente);
+        }).orElseThrow(() -> new RuntimeException("Pedido não encontrado com ID: " + id));
     }
 
     public void removerPedidoPorId(Long id) {

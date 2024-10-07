@@ -2,6 +2,7 @@ package br.edu.iff.ccc.bsi.perfumaria.service;
 
 import br.edu.iff.ccc.bsi.perfumaria.entities.Cliente;
 import br.edu.iff.ccc.bsi.perfumaria.entities.Usuario;
+import br.edu.iff.ccc.bsi.perfumaria.repository.ClienteRepository;
 import br.edu.iff.ccc.bsi.perfumaria.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class ClienteService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private ClienteRepository clienteRepository;
 
 
     public Cliente inserirCliente(Cliente cliente) {
@@ -64,4 +68,14 @@ public class ClienteService {
                 .filter(cliente -> cliente.getDataCadastro().equals(dataCadastro))
                 .collect(Collectors.toList());
     }
+
+    public Cliente atualizarCliente(Long id, Cliente clienteAtualizado) {
+        return clienteRepository.findById(id).map(clienteExistente -> {
+            clienteExistente.setDataNascimento(clienteAtualizado.getDataNascimento());
+            clienteExistente.setDataCadastro(clienteAtualizado.getDataCadastro());
+
+            return clienteRepository.save(clienteExistente);
+        }).orElseThrow(() -> new RuntimeException("Cliente não encontrado com ID: " + id));
+    }
+
 }

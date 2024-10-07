@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdministradorService extends UsuarioService {
@@ -29,5 +30,26 @@ public class AdministradorService extends UsuarioService {
 
     public void removerPerfumePorId(Long id) {
         perfumeRepository.deleteById(id);
+    }
+
+    public Perfume atualizarPerfume(Long id, Perfume perfumeAtualizado) {
+        Optional<Perfume> perfumeExistente = perfumeRepository.findById(id);
+
+        if (perfumeExistente.isPresent()) {
+            Perfume perfume = perfumeExistente.get();
+
+
+            perfume.setNome(perfumeAtualizado.getNome());
+            perfume.setPreco(perfumeAtualizado.getPreco());
+            perfume.setQuantidadeEmEstoque(perfumeAtualizado.getQuantidadeEmEstoque());
+            perfume.setFragrancia(perfumeAtualizado.getFragrancia());
+            perfume.setMarca(perfumeAtualizado.getMarca());
+            perfume.setVolume(perfumeAtualizado.getVolume());
+
+
+            return perfumeRepository.save(perfume);
+        } else {
+            throw new RuntimeException("Perfume com ID " + id + " não encontrado");
+        }
     }
 }
