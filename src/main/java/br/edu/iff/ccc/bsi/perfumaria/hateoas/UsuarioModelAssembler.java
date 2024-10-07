@@ -26,8 +26,8 @@ public class UsuarioModelAssembler extends RepresentationModelAssemblerSupport<U
                         .encontrarUserPorId(entity.getId()))
                 .withSelfRel());
 
-        usuarioModel.(entity.getId());
-        usuarioModel.setUsername()(entity.getUsername());
+        usuarioModel.setId(entity.getId());
+        usuarioModel.setUsername(entity.getUsername());
         usuarioModel.setSenha(entity.getSenha());
         return usuarioModel;
     }

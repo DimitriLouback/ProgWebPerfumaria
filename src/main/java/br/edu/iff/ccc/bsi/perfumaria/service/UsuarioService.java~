@@ -39,23 +39,24 @@ public class UsuarioService {
         if (usuarioExistente.isPresent()) {
             Usuario usuario = usuarioExistente.get();
 
+            // Atualiza os atributos do usuário
             usuario.setUsername(usuarioAtualizado.getUsername());
             usuario.setSenha(usuarioAtualizado.getSenha());
             usuario.setEmail(usuarioAtualizado.getEmail());
             usuario.setCPF(usuarioAtualizado.getCPF());
             usuario.setCelular(usuarioAtualizado.getCelular());
 
-
+            // Atualiza o endereço, se fornecido
             if (usuarioAtualizado.getEndereco() != null) {
                 Endereco enderecoAtualizado = usuarioAtualizado.getEndereco();
                 usuario.getEndereco().setRua(enderecoAtualizado.getRua());
                 usuario.getEndereco().setNumero(enderecoAtualizado.getNumero());
                 usuario.getEndereco().setCidade(enderecoAtualizado.getCidade());
-                usuario.getEndereco().setBairro(enderecoAtualizado.getBairro());
-                usuario.getEndereco().setCEP(enderecoAtualizado.getCEP());
-                usuario.getEndereco().setUF(enderecoAtualizado.getUF());
+                usuario.getEndereco().setEstado(enderecoAtualizado.getEstado());
+                usuario.getEndereco().setCep(enderecoAtualizado.getCep());
             }
 
+            // Salva o usuário atualizado
             return usuarioRepository.save(usuario);
         } else {
             throw new RuntimeException("Usuário com ID " + id + " não encontrado");

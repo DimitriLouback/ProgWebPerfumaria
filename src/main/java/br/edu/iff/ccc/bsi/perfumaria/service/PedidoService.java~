@@ -31,7 +31,7 @@ public class  PedidoService  {
             pedidoExistente.setPagamento(pedidoAtualizado.getPagamento());
             pedidoExistente.setDataPedido(pedidoAtualizado.getDataPedido());
             return pedidoRepository.save(pedidoExistente);
-        }).orElseThrow(() -> new RuntimeException("Pedido não encontrado com ID: " + id));
+        }).orElseThrow(() -> new ResourceNotFoundException("Pedido não encontrado com ID: " + id));
     }
 
     public void removerPedidoPorId(Long id) {

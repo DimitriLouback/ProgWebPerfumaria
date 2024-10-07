@@ -9,18 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AdministradorService extends UsuarioService {
+public class PerfumeService {
 
     @Autowired
     private PerfumeRepository perfumeRepository;
 
-    // Métodos específicos para gerenciamento de perfumes
 
-    public Perfume adicionarPerfume(Perfume perfume) {
+    public Perfume inserirPerfume(Perfume perfume) {
         return perfumeRepository.save(perfume);
     }
 
-    public Perfume buscarPerfumePorId(Long id) {
+    public Perfume buscarPorId(Long id) {
         return perfumeRepository.findById(id).orElse(null);
     }
 
@@ -38,7 +37,7 @@ public class AdministradorService extends UsuarioService {
         if (perfumeExistente.isPresent()) {
             Perfume perfume = perfumeExistente.get();
 
-
+            // Atualiza os atributos do perfume
             perfume.setNome(perfumeAtualizado.getNome());
             perfume.setPreco(perfumeAtualizado.getPreco());
             perfume.setQuantidadeEmEstoque(perfumeAtualizado.getQuantidadeEmEstoque());
@@ -46,7 +45,7 @@ public class AdministradorService extends UsuarioService {
             perfume.setMarca(perfumeAtualizado.getMarca());
             perfume.setVolume(perfumeAtualizado.getVolume());
 
-
+            // Salva o perfume atualizado
             return perfumeRepository.save(perfume);
         } else {
             throw new RuntimeException("Perfume com ID " + id + " não encontrado");

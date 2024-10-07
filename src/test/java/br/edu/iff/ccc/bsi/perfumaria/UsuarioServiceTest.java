@@ -4,6 +4,7 @@ import br.edu.iff.ccc.bsi.perfumaria.entities.Usuario;
 import br.edu.iff.ccc.bsi.perfumaria.repository.UsuarioRepository;
 import br.edu.iff.ccc.bsi.perfumaria.service.UsuarioService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -30,6 +31,7 @@ class UsuarioServiceTest {
     }
 
     @Test
+    @DisplayName("Usuário Cadastrado com Sucesso")
     void testInserirUsuario() {
         Usuario usuario = new Usuario();
         usuario.setId(1L);

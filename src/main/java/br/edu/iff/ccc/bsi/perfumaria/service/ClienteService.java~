@@ -73,7 +73,7 @@ public class ClienteService {
         return clienteRepository.findById(id).map(clienteExistente -> {
             clienteExistente.setDataNascimento(clienteAtualizado.getDataNascimento());
             clienteExistente.setDataCadastro(clienteAtualizado.getDataCadastro());
-
+     
             return clienteRepository.save(clienteExistente);
         }).orElseThrow(() -> new RuntimeException("Cliente não encontrado com ID: " + id));
     }
