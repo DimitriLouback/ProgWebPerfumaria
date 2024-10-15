@@ -2,11 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Title</title>
 </head>
 <body>
 
-<header th:insert="~{fragmentos :: header}"></header>
-<h1> Projeto em Construção </h1>
+<header th:fragment="header">
+    Bem vindo a perfumaria!
+</header>
+
+
 </body>
 </html>

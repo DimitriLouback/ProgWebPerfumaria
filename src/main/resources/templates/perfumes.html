@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Perfumes</title>
+</head>
+<body>
+
+<h2>Lista de Perfumes</h2>
+
+<p>Número de perfumes: <span th:text="${#lists.size(perfumes)}">0</span></p>
+
+<a href="/perfume/novo">Adicionar Novo perfume</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Quantidade em estoque</th>
+        <th>Fragrância</th>
+        <th>Marca</th>
+        <th>Volume</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="perfume : ${perfumes}">
+        <td th:text="${perfume.id}">1</td>
+        <td th:text="${perfume.nome}">Nome da Tarefa</td>
+        <td th:text="${perfume.preco}">1</td>
+        <td th:text="${perfume.quantidadeEmEstoque}">1</td>
+        <td th:text="${perfume.fragrancia}">Nome da fragancia</td>
+        <td th:text="${perfume.marca}">Nome da marca</td>
+        <td th:text="${perfume.volume}">1</td>
+        <td>
+            <a th:href="@{'/perfume/edit/' + ${perfume.id}}">Editar</a>
+            <a th:href="@{'/perfume/delete/' + ${perfume.id}}">Excluir</a>
+        </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(perfumes)}">
+        <td colspan="5">Nenhum perfume encontrado.</td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+
+</body>
+</html>
