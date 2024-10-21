@@ -1,0 +1,45 @@
+<!-- src/main/resources/templates/usuario/list.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listar Usuários</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:insert="~{fragmentos :: header}"></header>
+
+<section class="table-container">
+
+    <h2>Lista de Usuários</h2>
+    <p>Número de usuarios: <span th:text="${#lists.size(usuarios)}">0</span></p>
+    <a href="/usuario/novo" class="back-btn">Adicionar Novo Usuário</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+            <th>Celular</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuario : ${usuarios}">
+            <td th:text="${usuario.username}"></td>
+            <td th:text="${usuario.email}"></td>
+            <td th:text="${usuario.CPF}"></td>
+            <td th:text="${usuario.celular}"></td>
+            <td>
+                <a th:href="@{/usuario/edit/{id}(id=${usuario.id})}">Editar</a> |
+                <a th:href="@{/usuario/delete/{id}(id=${usuario.id})}" onclick="return confirm('Tem certeza que deseja remover este usuário?');">Remover</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<footer th:insert="~{fragmentos :: footer}"></footer>
+</body>
+</html>

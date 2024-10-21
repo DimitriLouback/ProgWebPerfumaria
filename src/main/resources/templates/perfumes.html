@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Perfumes</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
+<header th:insert="~{fragmentos :: header}"></header>
+
+<section class="table-container">
+
 <h2>Lista de Perfumes</h2>
-
 <p>Número de perfumes: <span th:text="${#lists.size(perfumes)}">0</span></p>
+<a href="/perfume/novo" class="back-btn">Adicionar Novo perfume</a>
 
-<a href="/perfume/novo">Adicionar Novo perfume</a>
 <table>
     <thead>
     <tr>
@@ -27,15 +31,17 @@
     <tbody>
     <tr th:each="perfume : ${perfumes}">
         <td th:text="${perfume.id}">1</td>
-        <td th:text="${perfume.nome}">Nome da Tarefa</td>
+        <td th:text="${perfume.nome}">Nome do Perfume</td>
         <td th:text="${perfume.preco}">1</td>
         <td th:text="${perfume.quantidadeEmEstoque}">1</td>
-        <td th:text="${perfume.fragrancia}">Nome da fragancia</td>
-        <td th:text="${perfume.marca}">Nome da marca</td>
+        <td th:text="${perfume.fragrancia}">Fragrância do Perfume</td>
+        <td th:text="${perfume.marca}">Marca do Perfume</td>
         <td th:text="${perfume.volume}">1</td>
         <td>
             <a th:href="@{'/perfume/edit/' + ${perfume.id}}">Editar</a>
-            <a th:href="@{'/perfume/delete/' + ${perfume.id}}">Excluir</a>
+            <!-- Adicionando o alerta de confirmação na exclusão -->
+            <a th:href="@{'/perfume/delete/' + ${perfume.id}}"
+               onclick="return confirm('Tem certeza que deseja excluir o perfume com ID: ${perfume.id}?');">Excluir</a>
         </td>
     </tr>
     <tr th:if="${#lists.isEmpty(perfumes)}">
@@ -45,5 +51,8 @@
 </table>
 <hr>
 
+<footer th:insert="~{fragmentos :: footer}"></footer>
+
+</section>
 </body>
 </html>

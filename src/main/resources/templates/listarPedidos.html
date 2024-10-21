@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Listar Pedidos</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:insert="~{fragmentos :: header}"></header>
+
+<section class="table-container">
+
+  <h2>Lista de Pedidos</h2>
+  <p>Número de pedidos: <span th:text="${#lists.size(pedidos)}">0</span></p>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Cliente</th>
+      <th>Data do Pedido</th>
+      <th>Método de Pagamento</th>
+      <th>Status do Pagamento</th>
+      <th>Perfumes</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pedido : ${pedidos}">
+      <td th:text="${pedido.id}"></td>
+
+      <td th:text="${pedido.carrinho.cliente.username}"></td>
+
+      <td th:text="${#dates.format(pedido.dataPedido, 'dd/MM/yyyy')}"></td>
+
+      <td th:text="${pedido.pagamento.metodoPagamento}"></td>
+
+      <td th:text="${pedido.pagamento.statusPagamento}"></td>
+
+      <td>
+        <ul>
+          <li th:each="perfume : ${pedido.carrinho.perfumes}" th:text="${perfume.nome}">Perfume</li>
+        </ul>
+      </td>
+      <td>
+        <!-- Ações de edição e remoção -->
+        <a th:href="@{/pedidos/delete/{id}(id=${pedido.id})}" onclick="return confirm('Tem certeza que deseja remover este pedido?');">Remover</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<footer th:insert="~{fragmentos :: footer}"></footer>
+</body>
+</html>

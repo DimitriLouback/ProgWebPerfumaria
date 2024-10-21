@@ -8,10 +8,9 @@
 <body>
 
 <header th:fragment="header">
-    <div class="header-content">
-        <div class="logo">
-            <h1>PERFUMARIA</h1>
-        </div>
+    <div class="logo">
+        <h1>PERFUMARIA</h1>
+    </div>
         <nav>
             <ul>
                 <li><a href="/home" th:href="@{/home}">Home</a></li>
@@ -20,7 +19,6 @@
                 <li><a href="/pedidos" th:href="@{/pedidos}">Pedidos</a></li>
             </ul>
         </nav>
-    </div>
 </header>
 
 <footer th:fragment="footer">
