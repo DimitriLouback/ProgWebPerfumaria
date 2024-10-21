@@ -1,0 +1,58 @@
+/* src/main/resources/static/css/table.css */
+.table-container {
+    width: 80%;
+    max-width: 1000px; /* Limite de largura máxima para centralizar em telas grandes */
+    margin: 40px auto; /* Centraliza o contêiner da tabela na tela */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center; /* Centraliza o texto nas células */
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #ff80b3;
+    color: white;
+}
+
+td {
+    background-color: #fff;
+    color: #333;
+}
+
+a {
+    color: #ff80b3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #fcba03;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background-color: #ff80b3;
+}

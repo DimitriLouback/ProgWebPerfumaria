@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Novo Perfume</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .error {
+            border-color: red;
+        }
+        .error-message {
+            color: red;
+            font-size: small;
+        }
+    </style>
+</head>
+<body>
+
+<header th:insert="~{fragmentos :: header}"></header>
+
+<section class="form-container">
+<h1>Novo perfume</h1>
+
+<form th:action="@{/perfume}" th:object="${perfume}" method="post">
+
+
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" th:field="*{nome}"
+               th:errorclass="error" />
+        <p th:if="${#fields.hasErrors('*{nome}')}"
+           th:errors="*{nome}" class="error-message">Nome inválido</p>
+    </div>
+    <div class="form-group">
+        <label for="preco">Preço</label>
+        <textarea id="preco" th:field="*{preco}"
+                  th:errorclass="error"></textarea>
+        <p th:if="${#fields.hasErrors('*{preco}')}"
+           th:errors="*{preco}" class="error-message">Preço inválido</p>
+    </div>
+    <div class="form-group">
+        <label for="quantidadeEmEstoque">Quantidade em Estoque</label>
+        <textarea id="quantidadeEmEstoque" th:field="*{quantidadeEmEstoque}"
+                  th:errorclass="error"></textarea>
+        <p th:if="${#fields.hasErrors('*{quantidadeEmEstoque}')}"
+           th:errors="*{quantidadeEmEstoque}" class="error-message">quantidade inválida</p>
+    </div>
+    <div class="form-group">
+        <label for="fragrancia">Fragrância</label>
+        <textarea id="fragrancia" th:field="*{fragrancia}"
+                  th:errorclass="error"></textarea>
+        <p th:if="${#fields.hasErrors('*{fragrancia}')}"
+           th:errors="*{fragrancia}" class="error-message">fragrancia inválida</p>
+    </div>
+    <div class="form-group">
+        <label for="marca">Marca:</label>
+        <textarea id="marca" th:field="*{marca}"
+                  th:errorclass="error"></textarea>
+        <p th:if="${#fields.hasErrors('*{marca}')}"
+           th:errors="*{marca}" class="error-message">Marca inválida</p>
+    </div>
+    <div class="form-group">
+        <label for="volume">Volume:</label>
+        <textarea id="volume" th:field="*{volume}"
+                  th:errorclass="error"></textarea>
+        <p th:if="${#fields.hasErrors('*{volume}')}"
+           th:errors="*{volume}" class="error-message">Volume inválido</p>
+    </div>
+    <button type="submit" class="submit-btn">Salvar</button>
+</form>
+
+    <a href="/perfume" class="back-btn">Voltar</a>
+
+</section>
+
+<footer th:insert="~{fragmentos :: footer}"></footer>
+</body>
+</html>

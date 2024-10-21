@@ -16,7 +16,7 @@
 
     <div class="perfume-list">
         <div th:each="perfume : ${perfumes}" class="perfume-card">
-            <img src="/images/perfume.png" alt="Perfume" class="perfume-image">
+            <img src="/images/perfume.jpg" alt="Perfume" class="perfume-image">
             <div class="perfume-info">
                 <h3 th:text="${perfume.nome}">Nome do Perfume</h3>
                 <p th:text="'Preço: R$ ' + ${perfume.preco}">Preço</p>

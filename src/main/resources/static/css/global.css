@@ -1,0 +1,97 @@
+/* src/main/resources/static/css/global.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Estilo geral do header */
+header {
+    width: 100%;
+    background-color: #f8c8dc; /* Cor de fundo igual ao footer */
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    position: relative;
+}
+
+/* Logo */
+.header-content .logo {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.header-content .logo h1 {
+    margin: 0;
+    font-size: 36px;
+    font-family: 'Arial', sans-serif;
+    color: #ffec00;
+}
+
+/* Navegação */
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
+/* Estilo para o footer, combinando com o header */
+footer {
+    width: 100%;
+    background-color: #f8c8dc;
+    color: #333;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+}
+
+footer a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+footer a:hover {
+    color: #f8c8dc;
+    background-color: #333;
+    padding: 2px 6px;
+    border-radius: 4px;
+}

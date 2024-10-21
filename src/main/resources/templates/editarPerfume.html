@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Perfume</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:insert="~{fragmentos :: header}"></header>
+<section class="form-container">
+<h1>Editar Perfume</h1>
+<form th:action="@{/perfume/update/{id}(id=${perfume.id})}" th:object="${perfume}" method="post">
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" th:field="*{nome}" />
+    </div>
+    <div class="form-group">
+        <label for="preco">Preço:</label>
+        <textarea id="preco" th:field="*{preco}"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="quantidadeEmEstoque">Quantidade em estoque:</label>
+        <textarea id="quantidadeEmEstoque" th:field="*{quantidadeEmEstoque}"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="fragancia">Fragrância:</label>
+        <textarea id="fragancia" th:field="*{fragrancia}"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="marca">Marca:</label>
+        <textarea id="marca" th:field="*{marca}"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="volume">volume:</label>
+        <textarea id="volume" th:field="*{volume}"></textarea>
+    </div>
+    <button type="submit"  class="submit-btn">Atualizar</button>
+</form>
+<a href="/perfume" class="back-btn">Voltar</a>
+</section>
+<footer th:insert="~{fragmentos :: footer}"></footer>
+</body>
+</html>
